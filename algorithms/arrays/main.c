@@ -82,6 +82,55 @@ int binarySearch(struct Array *ar, int elem) {
     return -1;
 }
 
+int get(struct Array *ar, int index) {
+    if (index >= 0 && index < ar->length) {
+        return ar->a[index];
+    }
+    return -1;
+}
+
+void set(struct Array *ar, int index, int elem) {
+    if (index >= 0 && index < ar->length) {
+        ar->a[index] = elem;
+    }
+}
+
+int min(struct Array *ar) {
+    int min = ar->a[0];
+    for(int i=0;i<ar->length;i++) {
+        if (ar->a[i] < min) min = ar->a[i];
+    }
+    return min;
+}
+
+int max(struct Array *ar) {
+    int max = ar->a[0];
+    for(int i=0;i<ar->length;i++) {
+        if (ar->a[i] > max) max = ar->a[i];
+    }
+    return max;
+}
+
+int sum(struct Array *ar) {
+    int sum = 0;
+    for(int i=0;i<ar->length;i++) {
+        sum += ar->a[i];
+    }
+    return sum;
+}
+
+void reverse(struct Array *ar) {
+    int i=0,j=ar->length-1;
+    while (i<j) {
+        int temp = ar->a[i];
+        ar->a[i] = ar->a[j];
+        ar->a[j] = temp;
+
+        i++;
+        j--;
+    }
+}
+
 int main()
 {
     struct Array ar;
@@ -106,6 +155,11 @@ int main()
     // printf("10 is at index: %d\n", linearSearch(&ar, 10));
     // printf("50 is at index: %d\n", linearSearch(&ar, 50));
     printf("50 is at index: %d\n", binarySearch(&ar, 50));
+    print(&ar);
+
+    printf("reverse");
+    reverse(&ar);
+
     print(&ar);
 
     return 0;
